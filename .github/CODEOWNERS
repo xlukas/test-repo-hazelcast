@@ -7,4 +7,3 @@
 **/client/**           @hazelcast/apis
 **/hazelcast-client**  @hazelcast/apis
 **/MessageTaskSecurityTest* @hazelcast/security-working-group
-**/pom.xml         @hazelcast/Mono-Repo-Test-Team

@@ -13,14 +13,6 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<!-- Test CODEOWNERS CONFLICT ext-conflict-branch-2 int-os-branch-with-conflict ext-os-branch-with-conflict -->
-<!-- Test CODEOWNERS test with auto asssignment-->
-<!-- ext-pr-internal-modifies-shadow-pr. Change to test shadow overwirting of comment-->
-<!-- ext-test-internal-pr-with-same-file-change-no-conflict-->
-
-<!-- int-branch-make-mono-os-ee-change-->
-<!-- int-make-direct-change-in-mono-os-ee -->
-
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -32,7 +24,6 @@
     <artifactId>hazelcast-root</artifactId>
     <packaging>pom</packaging>
     <version>5.4.0-SNAPSHOT</version>
-
     <name>Hazelcast Root</name>
     <description>Hazelcast In-Memory DataGrid</description>
     <url>http://www.hazelcast.com/</url>
@@ -96,12 +87,8 @@
         <owasp.dependency-check.version>8.4.0</owasp.dependency-check.version>
         <codehause.license.plugin.version>2.2.0</codehause.license.plugin.version>
 
-        <!--int-test-external-pr-with-same-file-change-no-conflict-->
-
         <!-- Third-party dependencies (sorted alphabetically) -->
         <!--<affinity.version>3.2.3</affinity.version>-->
-	<!--ext-branch-pre-mono-create-hash-->
-
         <antlr4.version>4.9.3</antlr4.version>
         <avro.version>1.11.2</avro.version>
         <aws.sdk.version>1.12.550</aws.sdk.version>
