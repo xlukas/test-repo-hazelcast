@@ -90,6 +90,8 @@
         <owasp.dependency-check.version>8.4.0</owasp.dependency-check.version>
         <codehause.license.plugin.version>2.2.0</codehause.license.plugin.version>
 
+        <!--int-test-external-pr-with-same-file-change-no-conflict-->
+
         <!-- Third-party dependencies (sorted alphabetically) -->
         <!--<affinity.version>3.2.3</affinity.version>-->
         <antlr4.version>4.9.3</antlr4.version>
