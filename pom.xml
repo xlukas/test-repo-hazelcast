@@ -28,6 +28,8 @@
     <description>Hazelcast In-Memory DataGrid</description>
     <url>http://www.hazelcast.com/</url>
 
+<!-- ext-os-change-to-revert -->
+
     <modules>
         <module>hazelcast-tpc-engine</module>
         <module>hazelcast</module>
