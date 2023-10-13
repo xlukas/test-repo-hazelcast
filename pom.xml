@@ -13,7 +13,6 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<!-- External OS change to be reverted -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -28,6 +27,8 @@
     <name>Hazelcast Root</name>
     <description>Hazelcast In-Memory DataGrid</description>
     <url>http://www.hazelcast.com/</url>
+
+<!-- ext-os-change-to-revert -->
 
     <modules>
         <module>hazelcast-tpc-engine</module>
