@@ -15,6 +15,7 @@
   -->
 <!-- Test CODEOWNERS -->
 <!-- Test CODEOWNERS test with auto asssignment-->
+<!-- ext-pr-internal-modifies-shadow-pr. Change to test shadow overwirting of comment-->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
