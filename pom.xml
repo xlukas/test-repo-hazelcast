@@ -13,7 +13,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<!-- Test CODEOWNERS CONFLICT ext-conflict-branch-2 -->
+<!-- Test CODEOWNERS CONFLICT ext-conflict-branch-2 int-os-branch-with-conflict -->
 <!-- Test CODEOWNERS test with auto asssignment-->
 <!-- ext-pr-internal-modifies-shadow-pr. Change to test shadow overwirting of comment-->
 <!-- ext-test-internal-pr-with-same-file-change-no-conflict-->
