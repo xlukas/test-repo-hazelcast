@@ -23,6 +23,10 @@ jobs:
   copybara-os:
     runs-on: ubuntu-latest
     steps:
+      - name: Print event payload
+        run: |
+          echo "Event payload:"
+          echo "${{ toJson(github.event) }}"
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
