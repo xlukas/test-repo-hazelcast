@@ -51,7 +51,7 @@ jobs:
       - name: Copy labels to shadow PR
         if: contains(fromJSON('["opened", "labeled", "unlabeled", "edited"]'), github.event.action)
         run: |
-          SOURCE_REPO="${{ github.repository }}
+          SOURCE_REPO="${{ github.repository }}"
           SOURCE_PR="${{ github.event.pull_request.number }}"
           CONTENT='${{ github.event.pull_request.body }}'
           CONTENT+="$(gh pr view "$SOURCE_PR" --json comments -q '.comments[].body')"
