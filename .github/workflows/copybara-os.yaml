@@ -49,6 +49,7 @@ jobs:
           copybara_options: "--nogit-destination-rebase"
           custom_config: .github/workflows/copybara-os.sky
       - name: Copy labels to other PR
+        if: github.event_name == 'pull_request_target'
         run: |
           SOURCE_REPO="${{ github.repository }}"
           SOURCE_PR="${{ github.event.pull_request.number }}"
