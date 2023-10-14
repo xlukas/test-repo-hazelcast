@@ -26,7 +26,7 @@ jobs:
       - name: Print Github payload
         run: |
           echo "Github payload:"
-          echo "${{ toJson(github) }}"
+          echo '${{ toJson(github) }}'
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
