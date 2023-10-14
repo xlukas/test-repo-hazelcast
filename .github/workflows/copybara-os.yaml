@@ -48,8 +48,7 @@ jobs:
           destination_repo: ${{ env.destination_repo }}
           copybara_options: "--nogit-destination-rebase"
           custom_config: .github/workflows/copybara-os.sky
-      - name: Copy labels to shadow PR
-        if: contains(fromJSON('["opened", "labeled", "unlabeled", "edited"]'), github.event.action)
+      - name: Copy labels to other PR
         run: |
           SOURCE_REPO="${{ github.repository }}"
           SOURCE_PR="${{ github.event.pull_request.number }}"
