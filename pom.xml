@@ -95,6 +95,8 @@
 
         <!-- Third-party dependencies (sorted alphabetically) -->
         <!--<affinity.version>3.2.3</affinity.version>-->
+	<!--ext-branch-pre-mono-create-hash-->
+
         <antlr4.version>4.9.3</antlr4.version>
         <avro.version>1.11.2</avro.version>
         <aws.sdk.version>1.12.550</aws.sdk.version>
