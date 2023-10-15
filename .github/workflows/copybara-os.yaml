@@ -23,12 +23,6 @@ jobs:
   copybara-os:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Github payload
-        run: |
-          echo "Github payload:"
-          cat <<EOF
-          ${{ toJson(github) }}
-          EOF
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
