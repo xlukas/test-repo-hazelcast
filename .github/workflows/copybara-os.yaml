@@ -69,8 +69,7 @@ jobs:
         run: |
           SOURCE_REPO="${{ github.repository }}"
           SOURCE_PR="${{ github.event.pull_request.number }}"
-          CONTENT='${{ github.event.pull_request.body }}'
-          CONTENT+="$(gh pr view "$SOURCE_PR" --json comments -q '.comments[].body')"
+          CONTENT="$(gh pr view "$SOURCE_PR" --json "body,comments" -q '.body, .comments[].body')"
 
           while read -r line; do
             if [[ $line =~ Closes\ ([^/]+/[^/]+)#([0-9]+) ]]; then
@@ -85,8 +84,7 @@ jobs:
         if: github.event.action == 'closed'
         run: |
           PR_NUMBER="${{ github.event.pull_request.number }}"
-          PR_BODY='${{ github.event.pull_request.body }}'
-          PR_BODY+="$(gh pr view "$PR_NUMBER" --json comments -q '.comments[].body')"
+          CONTENT="$(gh pr view "$PR_NUMBER" --json "body,comments" -q '.body, .comments[].body')"
           
           while read -r line; do
             if [[ $line =~ Closes\ ([^/]+)/([^/]+)#([0-9]+) ]]; then
@@ -98,7 +96,7 @@ jobs:
               MESSAGE="This pull request has been closed because it was already $REASON as https://github.com/${{ github.repository }}/pull/${PR_NUMBER}"
               gh pr close --repo "$OWNER/$REPO" --comment "$MESSAGE" $OTHER_PR
             fi
-          done <<< "$PR_BODY"
+          done <<< "$CONTENT"
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN_WITH_PR_PERMISSIONS }}
 
