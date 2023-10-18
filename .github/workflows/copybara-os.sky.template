@@ -7,7 +7,12 @@ DESTINATION_BRANCH = "<branch_to_sync>"
 COMMITTER = "Github Actions <actions@github.com>"
 LOCAL_SOT = "file:///usr/src/app"
 
-PUSH_INCLUDE = ["hazelcast/**",".github/workflows/copybara-os.*", ".github/workflows/synchronize-pr-labels.sh"]
+PUSH_INCLUDE = [
+    "hazelcast/**",
+    ".github/workflows/copybara-os.*",
+    ".github/workflows/synchronize-pr-labels.sh",
+    ".github/workflows/close-referenced-prs.yaml"
+]
 PUSH_EXCLUDE = []
 PUSH_TRANSFORMATIONS = [
 ]
@@ -16,7 +21,11 @@ PR_INCLUDE = ["**"]
 PR_EXCLUDE = []
 PR_TRANSFORMATIONS = [
         core.move("", "hazelcast", paths = glob(["**"])),
-        core.move("hazelcast/.github", ".github", paths = glob(["workflows/copybara-os.*", "workflows/synchronize-pr-labels.sh"])),
+        core.move("hazelcast/.github", ".github", paths = glob([
+            "workflows/copybara-os.*",
+            "workflows/synchronize-pr-labels.sh",
+            "workflows/close-referenced-prs.yaml"
+        ])),
 ]
 
 # Push workflow
