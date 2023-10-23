@@ -1,0 +1,3 @@
+load(":common-copybara.sky", "config", "os_config", "add_comment_with_shadow_pr", "pr_workflow")
+
+pr_workflow(config, os_config)
