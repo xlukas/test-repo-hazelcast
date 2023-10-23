@@ -66,7 +66,7 @@ jobs:
             if [[ $line =~ Closes\ ([^/]+/[^/]+)#([0-9]+) ]]; then
               TARGET_REPO="${BASH_REMATCH[1]}"
               TARGET_PR="${BASH_REMATCH[2]}"
-              .github/workflows/synchronize-pr-labels.sh $SOURCE_REPO $SOURCE_PR $TARGET_REPO $TARGET_PR
+              .github/workflows/common-synchronize-pr-labels.sh $SOURCE_REPO $SOURCE_PR $TARGET_REPO $TARGET_PR
             fi
           done <<< "$CONTENT"
         env:
