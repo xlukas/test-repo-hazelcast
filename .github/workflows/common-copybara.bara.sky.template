@@ -25,7 +25,7 @@ os_config = {
          "hazelcast/**",
          ".github/workflows/common-*",
      ],
-     "PUSH_EXCLUDE" : [],
+    "PUSH_EXCLUDE" : [],
 }
 
 def add_comment_with_shadow_pr(ctx):
@@ -61,3 +61,23 @@ def pr_workflow(config, repo_config):
        ] + repo_config["PR_TRANSFORMATIONS"],
        after_workflow = [add_comment_with_shadow_pr],
    )
+
+def push_workflow(config, repo_config):
+    core.workflow(
+        name = "push",
+        origin = git.origin(
+            url = config["LOCAL_SOT"] if config["LOCAL_SOT"] else config["SOT_REPO"],
+            ref = config["SOT_BRANCH"],
+        ),
+        destination = git.github_destination(
+            url = config["DESTINATION_REPO"],
+            push = config["DESTINATION_BRANCH"],
+        ),
+        origin_files = glob(repo_config["PUSH_INCLUDE"], exclude = repo_config["PUSH_EXCLUDE"]),
+        authoring = authoring.pass_thru(default = config["COMMITTER"]),
+        mode = "ITERATIVE",
+        transformations = [
+            metadata.restore_author("ORIGINAL_AUTHOR", search_all_changes = True),
+            metadata.expose_label("COPYBARA_INTEGRATE_REVIEW"),
+        ] + core.reverse(repo_config["PR_TRANSFORMATIONS"]),
+    )
