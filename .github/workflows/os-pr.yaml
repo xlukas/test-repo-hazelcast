@@ -33,7 +33,7 @@ jobs:
               echo "Reopening PR: $OWNER/$REPO/$OTHER_PR"
               gh pr reopen --repo "$OWNER/$REPO" \
                --comment "This pull request has been reopened because of reopening of https://github.com/${{ github.repository }}/pull/${PR_NUMBER}" \
-              $OTHER_PR || true
+              $OTHER_PR
             fi
           done <<< "$CONTENT"
         env:
