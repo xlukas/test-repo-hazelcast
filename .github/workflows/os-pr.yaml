@@ -1,8 +1,4 @@
 on:
-  push:
-    branches:
-      - "master"
-      - "[0-9]+.[0-9]+.z"
   pull_request_target:
     branches:
       - "master"
@@ -19,12 +15,10 @@ env:
   sot_repo: hazelcast/test-repo-hazelcast-mono
   destination_repo: hazelcast/test-repo-hazelcast
 jobs:
-  copybara-os:
+  copybara-os-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
       - name: Reopen referenced PRs
         if: github.event.action == 'reopened'
         run: |
@@ -45,15 +39,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN_WITH_PR_PERMISSIONS }}
       - name: Generate copybara config file
-        if: github.event_name != 'pull_request_target' || contains(fromJSON('["reopened", "opened", "synchronize", "edited"]'), github.event.action)
+        if: contains(fromJSON('["reopened", "opened", "synchronize", "edited"]'), github.event.action)
         run: |
           sed -e 's#<branch_to_sync>#${{ env.branch_to_sync }}#' \
               -e 's#<sot_repo>#${{ env.sot_repo }}#' \
               -e 's#<destination_repo>#${{ env.destination_repo }}#' \
-              .github/workflows/copybara-os.sky.template > .github/workflows/copybara-os.sky
+              .github/workflows/common-copybara.sky.template > .github/workflows/common-copybara.sky
       - uses: ldziedziul/copybara-action@main
-        name: Copybara ${{ env.branch_to_sync }}
-        if: github.event_name != 'pull_request_target' || contains(fromJSON('["reopened", "opened", "synchronize", "edited"]'), github.event.action)
+        name: "Copybara PR #${{ github.event.pull_request.number }} -> ${{ env.branch_to_sync }}"
+        if: contains(fromJSON('["reopened", "opened", "synchronize", "edited"]'), github.event.action)
         with:
           ssh_key: ${{ secrets.GH_DEVOPSHAZELCAST_SSH_KEY }}
           access_token: ${{ secrets.GH_TOKEN }}
@@ -61,9 +55,8 @@ jobs:
           sot_branch: ${{ env.branch_to_sync }}
           destination_repo: ${{ env.destination_repo }}
           copybara_options: "--nogit-destination-rebase"
-          custom_config: .github/workflows/copybara-os.sky
+          custom_config: .github/workflows/os-pr.sky
       - name: Copy labels to other PR
-        if: github.event_name == 'pull_request_target'
         run: |
           SOURCE_REPO="${{ github.repository }}"
           SOURCE_PR="${{ github.event.pull_request.number }}"
@@ -78,4 +71,3 @@ jobs:
           done <<< "$CONTENT"
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN_WITH_PR_PERMISSIONS }}
-
