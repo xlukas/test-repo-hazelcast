@@ -8,23 +8,23 @@ config = {
 }
 
 ee_config = {
-   PR_TRANSFORMATIONS : [],
-   PUSH_INCLUDE : ["**"],
-   PUSH_EXCLUDE : ["hazelcast/**", ".github/workflows/mono-*"],
+   "PR_TRANSFORMATIONS" : [],
+   "PUSH_INCLUDE" : ["**"],
+   "PUSH_EXCLUDE" : ["hazelcast/**", ".github/workflows/mono-*"],
 }
 
 os_config = {
-    PR_TRANSFORMATIONS : [
+    "PR_TRANSFORMATIONS" : [
             core.move("", "hazelcast", paths = glob(["**"])),
             core.move("hazelcast/.github", ".github", paths = glob([
                 "workflows/common-*",
             ])),
     ],
-    PUSH_INCLUDE : [
+    "PUSH_INCLUDE" : [
          "hazelcast/**",
          ".github/workflows/common-*",
      ],
-     PUSH_EXCLUDE : [],
+     "PUSH_EXCLUDE" : [],
 }
 
 def add_comment_with_shadow_pr(ctx):
