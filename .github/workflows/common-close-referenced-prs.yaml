@@ -26,7 +26,7 @@ jobs:
               PR_CLOSED=$(gh pr view --repo "$OWNER/$REPO" $OTHER_PR --json closed -q '.closed')
               if [ "$PR_CLOSED" == "false" ]; then
                 gh pr close --repo "$OWNER/$REPO" --comment "$MESSAGE" $OTHER_PR
-              if
+              fi
             fi
           done <<< "$CONTENT"
         env:
