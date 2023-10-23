@@ -44,7 +44,7 @@ jobs:
           sed -e 's#<branch_to_sync>#${{ env.branch_to_sync }}#' \
               -e 's#<sot_repo>#${{ env.sot_repo }}#' \
               -e 's#<destination_repo>#${{ env.destination_repo }}#' \
-              .github/workflows/common-copybara.sky.template > .github/workflows/common-copybara.sky
+              .github/workflows/common-copybara.bara.sky.template > .github/workflows/common-copybara.bara.sky
       - uses: ldziedziul/copybara-action@main
         name: "Copybara PR #${{ github.event.pull_request.number }} -> ${{ env.branch_to_sync }}"
         if: contains(fromJSON('["reopened", "opened", "synchronize", "edited"]'), github.event.action)
