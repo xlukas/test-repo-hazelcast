@@ -54,7 +54,7 @@ def pr_workflow(config, repo_config):
        authoring = authoring.pass_thru(default = config["COMMITTER"]),
        mode = "CHANGE_REQUEST",
        set_rev_id = False,
-       pr_branch = "imported/" + config["DESTINATION_REPO"].replace("git@github.com:", " ").replace(".git", "") + "/pulls/${GITHUB_PR_NUMBER}"
+       pr_branch = "imported/" + config["DESTINATION_REPO"].replace("git@github.com:", " ").replace(".git", "") + "/pulls/${GITHUB_PR_NUMBER}",
        transformations = [
            metadata.squash_notes(prefix='Import of ${GITHUB_PR_URL}\n\n**Original PR description:**\n\n${GITHUB_PR_BODY}\n\nImported changes:\n\n', oldest_first = True, show_author=False),
            metadata.expose_label("GITHUB_PR_NUMBER", new_name = "Closes", separator = config["DESTINATION_REPO"].replace("git@github.com:", " ").replace(".git", "#")),
