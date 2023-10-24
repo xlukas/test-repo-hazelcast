@@ -48,7 +48,7 @@ def pr_workflow(config, repo_config):
            integrates = [],
            title = "${GITHUB_PR_TITLE}",
            update_description = True,
-           pr_branch = "imported/" + config["DESTINATION_REPO"].replace("git@github.com:", " ").replace(".git", "") + "/pulls/${CONTEXT_REFERENCE}",
+           pr_branch = "imported/" + config["DESTINATION_REPO"].replace("git@github.com:", "").replace(".git", "") + "/${CONTEXT_REFERENCE}",
        ),
        destination_files = glob(repo_config["PUSH_INCLUDE"], exclude = repo_config["PUSH_EXCLUDE"]),
        origin_files = glob(["**"]),
