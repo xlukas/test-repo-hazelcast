@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -e
 
 get_labels() {
   local repo=$1
