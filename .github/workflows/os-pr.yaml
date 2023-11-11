@@ -36,7 +36,7 @@ jobs:
             fi
           done <<< "$CONTENT"
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN_WITH_PR_PERMISSIONS }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
       - name: Generate copybara config file
         run: |
           sed -e 's#<branch_to_sync>#${{ env.branch_to_sync }}#' \
@@ -47,7 +47,7 @@ jobs:
         name: "Copybara PR #${{ github.event.pull_request.number }} -> ${{ env.branch_to_sync }}"
         with:
           ssh_key: ${{ secrets.GH_DEVOPSHAZELCAST_SSH_KEY }}
-          access_token: ${{ secrets.GH_TOKEN }}
+          access_token: ${{ secrets.GH_PAT }}
           sot_repo: ${{ env.sot_repo }}
           sot_branch: ${{ env.branch_to_sync }}
           destination_repo: ${{ env.destination_repo }}
@@ -68,4 +68,4 @@ jobs:
             fi
           done <<< "$CONTENT"
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN_WITH_PR_PERMISSIONS }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
