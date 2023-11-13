@@ -27,4 +27,4 @@ jobs:
                 fi
               done <<< "$CONTENT"
            env:
-              GH_TOKEN: ${{ secrets.GH_TOKEN_MONOREPO }}
+              GH_TOKEN: ${{ secrets.DEVOPSHAZELCAST_PAT_FOR_MONOREPO }}
