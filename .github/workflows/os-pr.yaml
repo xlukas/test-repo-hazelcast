@@ -14,6 +14,7 @@ env:
   branch_to_sync: ${{ github.base_ref || github.ref_name}}
   sot_repo: hazelcast/test-repo-hazelcast-mono
   destination_repo: hazelcast/test-repo-hazelcast
+  GH_TOKEN: ${{ secrets.DEVOPSHAZELCAST_PAT_FOR_MONOREPO }}
 jobs:
   copybara-os-pr:
     runs-on: ubuntu-latest
@@ -74,5 +75,3 @@ jobs:
               .github/workflows/common-synchronize-pr-milestone.sh $SOURCE_REPO $SOURCE_PR $TARGET_REPO $TARGET_PR
             fi
           done <<< "$CONTENT"
-        env:
-          GH_TOKEN: ${{ secrets.DEVOPSHAZELCAST_PAT_FOR_MONOREPO }}
