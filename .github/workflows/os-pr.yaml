@@ -18,11 +18,13 @@ jobs:
   copybara-os-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Setup Git User
         run: |
-          git config --global user.name 'devOpsHazelcast'
+          git config --global user.name 'devOpsHazelcast global'
           git config --global user.email 'devops@hazelcast.com'
-      - uses: actions/checkout@v4
+          git config user.name 'devOpsHazelcast'
+          git config user.email 'devops@hazelcast.com'
       - name: Reopen referenced PRs
         if: github.event.action == 'reopened'
         run: |
