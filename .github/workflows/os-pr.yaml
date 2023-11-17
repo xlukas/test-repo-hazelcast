@@ -40,9 +40,8 @@ jobs:
           GH_TOKEN: ${{ secrets.DEVOPSHAZELCAST_PAT_FOR_MONOREPO }}
       - name: Extract the original PR author
         run: |
-          echo "GitHub Event:"
-          echo "${{ toJson(github.event) }}"
-          ORIGINAL_AUTHOR="${{ github.event.pull_request.user.name }} <${{ github.event.pull_request.user.email }}>"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          ORIGINAL_AUTHOR=$(gh pr view $PR_NUMBER --json "commits" --jq '.commits[0].authors[0] | "\(.name) <\(.email)>"')
           echo "ORIGINAL_AUTHOR=$ORIGINAL_AUTHOR" >> "$GITHUB_ENV"
       - name: Generate copybara config file
         run: |
