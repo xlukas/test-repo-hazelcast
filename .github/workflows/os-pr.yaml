@@ -38,16 +38,11 @@ jobs:
           done <<< "$CONTENT"
         env:
           GH_TOKEN: ${{ secrets.DEVOPSHAZELCAST_PAT_FOR_MONOREPO }}
-      - name: Extract the original PR author
-        run: |
-          ORIGINAL_AUTHOR="${{ github.event.pull_request.user.name }} <${{ github.event.pull_request.user.email }}>"
-          echo "ORIGINAL_AUTHOR=$ORIGINAL_AUTHOR" >> "$GITHUB_ENV"
       - name: Generate copybara config file
         run: |
           sed -e 's#<branch_to_sync>#${{ env.branch_to_sync }}#' \
               -e 's#<sot_repo>#${{ env.sot_repo }}#' \
               -e 's#<destination_repo>#${{ env.destination_repo }}#' \
-              -e 's#<committer>#${{ env.ORIGINAL_AUTHOR }}#' \
               .github/workflows/common-copybara.bara.sky.template > .github/workflows/common-copybara.bara.sky
       - uses: ldziedziul/copybara-action@main
         name: "Copybara PR #${{ github.event.pull_request.number }} -> ${{ env.branch_to_sync }}"
